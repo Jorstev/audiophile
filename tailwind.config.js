@@ -12,6 +12,9 @@ export default {
         600: "600", // Semi-bold
         800: "800", // Bold
       },
+      scale: {
+        170: "1.7",
+      },
     },
   },
   plugins: [],

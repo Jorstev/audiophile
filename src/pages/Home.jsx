@@ -1,4 +1,5 @@
 import CategorySection from "../features/category/CategorySection";
+import Button from "../ui/Button";
 
 function Home() {
   return (
@@ -21,21 +22,39 @@ function Home() {
             made for the passionate music enthusiast.
           </span>
           <div>
-            <button className="px-7 py-4 bg-[#D87D4A] text-xs tracking-widest">
+            {/* <button className="px-7 py-4 bg-[#D87D4A] text-xs tracking-widest">
               SEE PRODUCT
-            </button>
+            </button> */}
+            <Button type={"primaryLink"} text={"SEE PRODUCT"} />
           </div>
         </div>
       </section>
       <section>
         <CategorySection />
       </section>
-      <section className="bg-[#D87D4A] mx-6 py-24 h-[35rem] rounded-lg">
+      <section className="relative bg-[#D87D4A] mx-6 h-[38rem] rounded-lg flex flex-col justify-evenly items-center text-white text-center py-7">
         <img
-          className=""
+          className="absolute top-0 left-0 transform scale-170"
           src="\src\assets\home\desktop\pattern-circles.svg"
           alt="pattern"
         />
+        <div>
+          <img
+            className="w-44"
+            src="/src/assets/product-zx9-speaker/mobile/image-removebg-preview.svg"
+            alt="zx9-speaker-image"
+          />
+        </div>
+        <div>
+          <h3 className="text-4xl tracking-wide font-600 text-white">
+            ZX9 <span className="block">SPEAKER</span>
+          </h3>
+        </div>
+        <span>
+          Upgrade to premium speakers that are phenomenally built to deliver
+          truly remarkable sound.
+        </span>
+        <Button type={"quaternaryLink"} text={"SEE PRODUCT"} />
       </section>
     </div>
   );
