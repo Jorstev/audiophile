@@ -28,7 +28,7 @@ function Button({ type, linkTo, text, onClick }) {
     tertiaryLink: (
       <Link
         to={linkTo}
-        className="border border-black font-600 px-7 py-4 bg-white text-black text-xs tracking-widest"
+        className="border border-black font-600 px-7 py-4 bg-transparent text-black text-xs tracking-widest"
       >
         {text}
       </Link>

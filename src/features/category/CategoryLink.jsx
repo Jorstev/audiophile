@@ -2,13 +2,13 @@ import Button from "../../ui/Button";
 
 function CategoryLink({ image, linkTo, category }) {
   return (
-    <div className="relative bg-[#f1f1f1] h-44 w-full rounded-lg">
+    <div className="relative bg-[#f1f1f1] h-44 rounded-lg">
       <img
         className="z-20 absolute w-[96px] -top-14 left-1/2 -translate-x-1/2"
         src={`/src/assets/${image}`}
         alt="image-category"
       />
-      <div className="h-full w-full flex flex-col justify-end items-center space-y-3 pb-5">
+      <div className="h-full flex flex-col justify-end items-center space-y-3 pb-5">
         <h3 className="font-800 tracking-wider">{category}</h3>
         <Button type={"secondaryLink"} text={"SHOP"} linkTo={linkTo} />
       </div>
