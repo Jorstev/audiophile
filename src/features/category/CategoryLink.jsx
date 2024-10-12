@@ -2,9 +2,9 @@ import Button from "../../ui/Button";
 
 function CategoryLink({ image, linkTo, category }) {
   return (
-    <div className="relative bg-[#f1f1f1] h-44 rounded-lg">
+    <div className="relative bg-[#f1f1f1] h-44 w-[315px] rounded-lg max-w-[21rem] mx-auto">
       <img
-        className="z-20 absolute w-[96px] -top-14 left-1/2 -translate-x-1/2"
+        className="z-20 absolute w-[80px] -top-12 left-1/2 -translate-x-1/2 "
         src={`/src/assets/${image}`}
         alt="image-category"
       />

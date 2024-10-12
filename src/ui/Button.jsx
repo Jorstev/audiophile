@@ -20,7 +20,15 @@ function Button({ type, linkTo, text, onClick }) {
       </Link>
     ),
     secondaryLink: (
-      <Link to={linkTo} className="flex items-center space-x-2 cursor-pointer">
+      <Link
+        to={linkTo}
+        onClick={window.scroll({
+          top: 0,
+          left: 0,
+          behavior: "smooth",
+        })}
+        className="flex items-center space-x-2 cursor-pointer"
+      >
         <span className="tracking-wider font-600 text-sm">{text}</span>
         <IoIosArrowForward color="#D87D4A" />
       </Link>

@@ -1,6 +1,6 @@
 function Footer() {
   return (
-    <section className="relative bg-[#101010] h-[41rem] flex flex-col justify-around items-center py-5">
+    <section className="relative bg-[#101010] h-[41rem] flex flex-col justify-around items-center py-5 w-full">
       <div className="absolute px-12 py-[2px] top-0 left-1/2 -translate-x-1/2 bg-[#D87D4A]"></div>
       <div>
         <img src="/src/assets/shared/desktop/logo.svg" alt="logo" />

@@ -1,3 +1,4 @@
+import BestGear from "../features/category/BestGear";
 import CategorySection from "../features/category/CategorySection";
 import Button from "../ui/Button";
 import Footer from "../ui/Footer";
@@ -27,9 +28,9 @@ function Home() {
           </div>
         </div>
       </section>
-      <section>
-        <CategorySection />
-      </section>
+
+      <CategorySection />
+
       <section className="px-6 flex flex-col space-y-6">
         <div className="relative bg-[#D87D4A]  h-[37.5rem] rounded-lg flex flex-col justify-evenly items-center text-white text-center py-7 overflow-hidden">
           <img
@@ -87,31 +88,7 @@ function Home() {
           </div>
         </div>
       </section>
-      <section className="px-6 py-24 flex flex-col space-y-6 text-center">
-        <div>
-          <img
-            className="rounded-lg"
-            src="/src/assets/shared/mobile/image-best-gear.jpg"
-            alt="image-best"
-          />
-        </div>
-        <div>
-          <h3 className="text-[28px] tracking-wide font-800">
-            BRINGING YOU THE <span className="text-[#D87D4A]">BEST</span> AUDIO
-            GEAR
-          </h3>
-        </div>
-        <div>
-          <span className="text-gray-500 text-[15px]">
-            Located at the heart of New York City, Audiophile is the premier
-            store for high end headphones, earphones, speakers, and audio
-            accessories. We have a large showroom and luxury demonstration rooms
-            available for you to browse and experience a wide range of our
-            products. Stop by our store to meet some of the fantastic people who
-            make Audiophile the best place to buy your portable audio equipment.
-          </span>
-        </div>
-      </section>
+      <BestGear />
       <Footer />
     </div>
   );
