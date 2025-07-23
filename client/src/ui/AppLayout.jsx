@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import { useQuery } from "react-query";
-import { getProductByCategory } from "../services/products";
+import { getAllProducts } from "../services/products";
 
 function AppLayout() {
   const {
@@ -11,8 +11,9 @@ function AppLayout() {
     error,
   } = useQuery({
     queryKey: ["products"],
-    queryFn: getProductByCategory,
+    queryFn: getAllProducts,
   });
+
   return (
     <div>
       <Header />

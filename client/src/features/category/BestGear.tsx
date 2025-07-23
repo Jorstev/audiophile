@@ -1,4 +1,6 @@
-function BestGear() {
+import React from "react";
+
+const BestGear: React.FC = () => {
   return (
     <section className="px-6 py-24 flex flex-col space-y-6 text-center w-full items-center">
       <div>
@@ -26,6 +28,6 @@ function BestGear() {
       </div>
     </section>
   );
-}
+};
 
 export default BestGear;

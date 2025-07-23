@@ -1,4 +1,5 @@
-function Footer() {
+import React from "react";
+const Footer: React.FC = () => {
   return (
     <section className="relative bg-[#101010] h-[41rem] flex flex-col justify-around items-center py-5 w-full">
       <div className="absolute px-12 py-[2px] top-0 left-1/2 -translate-x-1/2 bg-[#D87D4A]"></div>
@@ -42,6 +43,6 @@ function Footer() {
       </div>
     </section>
   );
-}
+};
 
 export default Footer;

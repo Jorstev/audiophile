@@ -1,15 +1,28 @@
+import React from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { Link } from "react-router-dom";
 
-function Button({ type, linkTo, text, onClick }) {
-  const buttonType = {
+interface ButtonProps {
+  type: string;
+  linkTo: string;
+  text: string;
+  onClick?: () => void;
+}
+
+const Button: React.FC<ButtonProps> = ({
+  type,
+  linkTo,
+  text,
+  onClick,
+}): JSX.Element | null => {
+  const buttonType: Record<string, JSX.Element> = {
     primaryBtn: (
-      <button
+      <Link
         to={linkTo}
         className="px-7 py-4 font-600 bg-[#D87D4A] text-xs tracking-widest text-white"
       >
         {text}
-      </button>
+      </Link>
     ),
     primaryLink: (
       <Link
@@ -22,11 +35,13 @@ function Button({ type, linkTo, text, onClick }) {
     secondaryLink: (
       <Link
         to={linkTo}
-        onClick={window.scroll({
-          top: 0,
-          left: 0,
-          behavior: "smooth",
-        })}
+        onClick={() =>
+          window.scroll({
+            top: 0,
+            left: 0,
+            behavior: "smooth",
+          })
+        }
         className="flex items-center space-x-2 cursor-pointer"
       >
         <span className="tracking-wider font-600 text-sm">{text}</span>
@@ -52,6 +67,6 @@ function Button({ type, linkTo, text, onClick }) {
     ),
   };
   return buttonType[type];
-}
+};
 
 export default Button;

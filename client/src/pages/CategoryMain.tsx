@@ -1,19 +1,37 @@
+import React from "react";
 import BestGear from "../features/category/BestGear";
 import CategorySection from "../features/category/CategorySection";
 import Footer from "../ui/Footer";
 import ProductItem from "../features/category/ProductItem";
 import { useOutletContext, useParams } from "react-router-dom";
 
-function CategoryMain() {
-  let category = useParams();
-  console.log(category);
-  category = Object.values(category).at(0);
-  console.log(category);
+interface Product {
+  id: string;
+  image: {
+    mobile: string;
+  };
+  description: string;
+  name: string;
+  category: string;
+  new?: boolean;
+}
 
-  const { isLoading, isError, categoryProducts, error } = useOutletContext();
+interface OutletContext {
+  isLoading: boolean;
+  isError: boolean;
+  categoryProducts: Product[];
+  error: null | { message: string };
+}
+
+function CategoryMain() {
+  const params = useParams<{ headphones: string }>();
+
+  const category = params.headphones || "";
+  const { isLoading, isError, categoryProducts, error } =
+    useOutletContext<OutletContext>();
 
   if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error: {error.message}</div>;
+  if (isError) return <div>Error: {error?.message}</div>;
 
   return (
     <div className="min-w-[360px]">

@@ -1,6 +1,20 @@
+import React from "react";
 import Button from "../../ui/Button";
 
-function ProductItem({ product }) {
+interface Product {
+  image: {
+    mobile: string;
+  };
+  description: string;
+  name: string;
+  new?: boolean;
+}
+
+interface ProductItemProps {
+  product: Product;
+}
+
+const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
   return (
     <div className="flex flex-col items-center justify-between text-center p-6 w-full h-[46rem]">
       <div>
@@ -11,7 +25,7 @@ function ProductItem({ product }) {
         />
       </div>
 
-      {product.new ?? (
+      {product.new && (
         <span className="tracking-[0.6em] text-sm text-[#D87D4A]">
           NEW PRODUCT
         </span>
@@ -24,9 +38,9 @@ function ProductItem({ product }) {
         </p>
       </div>
 
-      <Button type="primaryLink" text="SEE PRODUCT" />
+      <Button type="primaryLink" text="SEE PRODUCT" linkTo="#" />
     </div>
   );
-}
+};
 
 export default ProductItem;
