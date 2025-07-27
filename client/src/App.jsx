@@ -4,20 +4,24 @@ import AppLayout from "./ui/AppLayout";
 import Home from "./pages/Home";
 import { QueryClient, QueryClientProvider } from "react-query";
 import CategoryMain from "./pages/CategoryMain";
-import ProductDetails from "./features/productDetails/ProductDetails";
+import ProductDetails from "./pages/ProductDetails";
+import ScrollToTop from "./utils/ScrollToTop";
+
 function App() {
   const queryClient = new QueryClient();
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
       <BrowserRouter>
+        <ScrollToTop />
+
         <Routes>
           <Route path="/" element={<AppLayout />}>
-            <Route path="/home" element={<Home />} />
+            <Route index element={<Home />} />
             <Route path="/:headphones" element={<CategoryMain />} />
             <Route path="/:speakers" element={<CategoryMain />} />
             <Route path="/:earphones" element={<CategoryMain />} />
-            <Route path="/productDetails" element={<ProductDetails />} />
+            <Route path="/productDetails/:id" element={<ProductDetails />} />
           </Route>
         </Routes>
       </BrowserRouter>

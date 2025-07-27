@@ -6,7 +6,7 @@ import Footer from "../ui/Footer";
 function Home() {
   return (
     <div>
-      <section className="relative z-0 text-center">
+      <section className="relative z-0 text-center min-w-[360px]">
         <img
           className="h-[32rem] w-full object-cover object-bottom"
           src="/src/assets/home/mobile/image-header.jpg"
@@ -31,7 +31,7 @@ function Home() {
 
       <CategorySection />
 
-      <section className="px-6 flex flex-col space-y-6">
+      <section className="px-6 flex flex-col space-y-6 min-w-[360px]">
         <div className="relative bg-[#D87D4A]  h-[37.5rem] rounded-lg flex flex-col justify-evenly items-center text-white text-center py-7 overflow-hidden">
           <img
             className=" absolute top-0 left-0 transform scale-170"

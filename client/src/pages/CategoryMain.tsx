@@ -6,7 +6,7 @@ import ProductItem from "../features/category/ProductItem";
 import { useOutletContext, useParams } from "react-router-dom";
 
 interface Product {
-  id: string;
+  id: number;
   image: {
     mobile: string;
   };

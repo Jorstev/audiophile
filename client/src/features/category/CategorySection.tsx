@@ -3,7 +3,7 @@ import CategoryLink from "./CategoryLink";
 
 const CategorySection: React.FC = () => {
   return (
-    <section className="px-6 py-24 flex flex-col space-y-20 w-full md:flex-row md:space-x-4 md:items-center md:space-y-0">
+    <section className="px-6 py-24 flex flex-col space-y-20 w-full md:flex-row md:space-x-4 md:items-center md:space-y-0 min-w-[360px]">
       <CategoryLink
         image={
           "product-xx99-mark-one-headphones/mobile/image-removebg-preview.svg"

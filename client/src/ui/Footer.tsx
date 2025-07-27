@@ -1,17 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
 const Footer: React.FC = () => {
   return (
-    <section className="relative bg-[#101010] h-[41rem] flex flex-col justify-around items-center py-5 w-full">
+    <section className="relative bg-[#101010] h-[41rem] flex flex-col justify-around items-center py-5 w-full min-w-[360px]">
       <div className="absolute px-12 py-[2px] top-0 left-1/2 -translate-x-1/2 bg-[#D87D4A]"></div>
       <div>
         <img src="/src/assets/shared/desktop/logo.svg" alt="logo" />
       </div>
       <div className="text-white tracking-[0.2em] text-[13px] font-600">
-        <ul className="space-y-5 text-center">
-          <li>HOME</li>
-          <li>HEADPHONE</li>
-          <li>SPEAKERS</li>
-          <li>EARPHONES</li>
+        <ul className="space-y-5 text-center flex flex-col">
+          <Link to={"/"}>HOME</Link>
+          <Link to={"/headphones"}>HEADPHONE</Link>
+          <Link to={"/speakers"}>SPEAKERS</Link>
+          <Link to={"/earphones"}>EARPHONES</Link>
         </ul>
       </div>
       <div className="px-8 text-center">

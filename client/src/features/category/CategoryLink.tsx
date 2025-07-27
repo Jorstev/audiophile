@@ -13,7 +13,7 @@ const CategoryLink: React.FC<CategoryLinkProps> = ({
   category,
 }) => {
   return (
-    <div className="relative bg-[#f1f1f1] h-44 w-[315px] rounded-lg max-w-[21rem] mx-auto">
+    <div className="relative bg-[#f1f1f1] h-44 w-[315px] rounded-lg max-w-[21rem] mx-auto ">
       <img
         className="z-20 absolute w-[80px] -top-12 left-1/2 -translate-x-1/2 "
         src={`/src/assets/${image}`}

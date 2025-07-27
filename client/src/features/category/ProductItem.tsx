@@ -2,6 +2,7 @@ import React from "react";
 import Button from "../../ui/Button";
 
 interface Product {
+  id: number;
   image: {
     mobile: string;
   };
@@ -38,9 +39,12 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
         </p>
       </div>
 
-      <Button type="primaryLink" text="SEE PRODUCT" linkTo="#" />
+      <Button
+        type="primaryLink"
+        text="SEE PRODUCT"
+        linkTo={`/productDetails/${product.id}`}
+      />
     </div>
   );
 };
-
 export default ProductItem;
