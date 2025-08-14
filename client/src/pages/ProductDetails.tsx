@@ -7,12 +7,12 @@ import ProductInformation from "../features/productDetails/ProductInformation";
 
 const ProductDetails: React.FC = () => {
   return (
-    <>
+    <div>
       <ProductInformation />
       <CategorySection />
       <BestGear />
       <Footer />
-    </>
+    </div>
   );
 };
 

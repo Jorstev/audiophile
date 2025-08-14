@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
-import Footer from "../../ui/Footer";
-import BestGear from "../category/BestGear";
-import CategorySection from "../category/CategorySection";
+
 import Button from "../../ui/Button";
 import { useParams } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
 import Loader from "../../ui/Loader";
+import Counter from "../../ui/Counter";
 
 interface IncludeItem {
   quantity: number;
@@ -85,7 +84,7 @@ const ProductInformation: React.FC = () => {
   );
 
   return (
-    <section className="min-w-[360px]">
+    <section className="min-w-[360px] pt-16">
       <div className="px-6 py-16">
         <div>
           <img src={product?.image?.mobile} alt="image-product" />
@@ -104,15 +103,7 @@ const ProductInformation: React.FC = () => {
               ${product?.price}
             </span>
             <div className="flex space-x-5">
-              <div className=" w-32 h-12 flex items-center justify-around bg-[#f1f1f1]">
-                <div className=" p-3 text-[#ced6e0] hover:text-[#D87D4A] cursor-pointer">
-                  <FaMinus className="text-xs" />
-                </div>
-                <div className="text-xs font-800">1</div>
-                <div className=" p-3 text-[#ced6e0] hover:text-[#D87D4A] cursor-pointer">
-                  <FaPlus className="text-xs" />
-                </div>
-              </div>
+              <Counter></Counter>
               <Button type="primaryBtn" text="ADD TO CART" linkTo="#" />
             </div>
           </div>
