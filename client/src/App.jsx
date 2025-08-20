@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import CategoryMain from "./pages/CategoryMain";
 import ProductDetails from "./pages/ProductDetails";
 import ScrollToTop from "./utils/ScrollToTop";
+import Checkout from "./pages/Checkout";
 
 function App() {
   const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ function App() {
             <Route path="/:speakers" element={<CategoryMain />} />
             <Route path="/:earphones" element={<CategoryMain />} />
             <Route path="/productDetails/:id" element={<ProductDetails />} />
+            <Route path="/checkout" element={<Checkout />} />
           </Route>
         </Routes>
       </BrowserRouter>

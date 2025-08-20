@@ -3,7 +3,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { IoMenuSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import CartItem from "../features/cart/CartItem";
-
+import { AnimatePresence, motion } from "framer-motion";
 function Header() {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
@@ -52,40 +52,49 @@ function Header() {
           />
         </div>
       </div>
-      {isCartOpen && (
-        <div className="fixed top-24 left-0 right-0 bottom-0 bg-black bg-opacity-50 z-40 flex justify-end px-4 pt-6 pb-36 lg:top-20">
-          <div className="bg-white w-full max-w-md h-full p-6 shadow-lg outline-none rounded-lg flex flex-col justify-around">
-            <div className="flex justify-between items-center pb-4">
-              <h3 className="uppercase">cart (3)</h3>
-              <span className="text-sm text-gray-500 cursor-pointer">
-                Remove all
-              </span>
-            </div>
+      <AnimatePresence>
+        {isCartOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="fixed top-24 left-0 right-0 bottom-0 bg-black bg-opacity-50 z-40 flex justify-end px-4 pt-6 pb-36 lg:top-20">
+              <div className="bg-white w-full max-w-md h-full p-6 shadow-lg outline-none rounded-lg flex flex-col justify-around">
+                <div className="flex justify-between items-center pb-4">
+                  <h3 className="uppercase">cart (3)</h3>
+                  <span className="text-sm text-gray-500 cursor-pointer">
+                    Remove all
+                  </span>
+                </div>
 
-            {/* Example cart content */}
-            <div className="mt-4 flex flex-col space-y-4 overflow-y-auto h-56">
-              <CartItem />
-              <CartItem />
-              <CartItem />
-              <CartItem />
-              <CartItem />
-              <CartItem />
-              <CartItem />
-            </div>
-            <div>
-              <div className="flex justify-between items-center mt-4">
-                <span className="text-gray-500 uppercase">Total</span>
-                <span className="font-bold">$3,400.00</span>
+                {/* Example cart content */}
+                <div className="mt-4 flex flex-col space-y-4 overflow-y-auto h-56">
+                  <CartItem />
+                  <CartItem />
+                  <CartItem />
+                  <CartItem />
+                  <CartItem />
+                  <CartItem />
+                  <CartItem />
+                </div>
+                <div>
+                  <div className="flex justify-between items-center mt-4">
+                    <span className="text-gray-500 uppercase">Total</span>
+                    <span className="font-bold">$3,400.00</span>
+                  </div>
+                </div>
+                <div>
+                  <button className="w-full bg-[#D87D4A] text-xs tracking-widest text-white py-4 mt-4 uppercase">
+                    Checkout
+                  </button>
+                </div>
               </div>
             </div>
-            <div>
-              <button className="w-full bg-[#D87D4A] text-xs tracking-widest text-white py-4 mt-4 uppercase">
-                Checkout
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
