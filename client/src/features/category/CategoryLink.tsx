@@ -5,17 +5,25 @@ interface CategoryLinkProps {
   image: string;
   linkTo: string;
   category: string;
+  menu?: boolean;
 }
 
 const CategoryLink: React.FC<CategoryLinkProps> = ({
   image,
   linkTo,
   category,
+  menu = false,
 }) => {
   return (
-    <div className="relative bg-[#f1f1f1] h-44 w-[315px] rounded-lg max-w-[21rem] mx-auto ">
+    <div
+      className={`${
+        menu ? "h-32 w-[290px]" : "h-44 w-[315px]"
+      } relative bg-[#f1f1f1] rounded-lg max-w-[21rem] mx-auto`}
+    >
       <img
-        className="z-20 absolute w-[80px] -top-12 left-1/2 -translate-x-1/2 "
+        className={`${
+          menu ? "w-[60px]" : "w-[80px]"
+        } z-20 absolute -top-12 left-1/2 -translate-x-1/2`}
         src={`/src/assets/${image}`}
         alt="image-category"
       />
@@ -23,7 +31,11 @@ const CategoryLink: React.FC<CategoryLinkProps> = ({
         <h3 className="font-800 tracking-wider">{category}</h3>
         <Button type="secondaryLink" text="SHOP" linkTo={linkTo} />
       </div>
-      <div className="absolute bg-gray-400 border border-black left-1/2 -translate-y-1/2 top-1/3 -translate-x-1/2 w-28 h-8 z-10 blur-xl"></div>
+      <div
+        className={`absolute bg-gray-400 border border-black left-1/2 -translate-y-1/2 -translate-x-1/2 ${
+          menu ? "w-20 h-6 top-1/4" : "w-28 h-8 top-1/2"
+        }  z-10 blur-xl`}
+      ></div>
     </div>
   );
 };

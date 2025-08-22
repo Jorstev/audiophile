@@ -3,9 +3,9 @@ import React from "react";
 const BestGear: React.FC = () => {
   return (
     <section className="px-6 py-24 flex flex-col space-y-6 text-center w-full items-center min-w-[360px]">
-      <div>
+      <div className="w-full">
         <img
-          className="rounded-lg"
+          className="rounded-lg w-full"
           src="/src/assets/shared/mobile/image-best-gear.jpg"
           alt="image-best"
         />

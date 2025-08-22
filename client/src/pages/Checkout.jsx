@@ -2,15 +2,22 @@ import { FormProvider, useForm } from "react-hook-form";
 import Input from "../ui/Input";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import productImg from "../assets/product-xx99-mark-two-headphones/mobile/image-product.jpg";
+
 import AmountItem from "../ui/AmountItem";
 import Footer from "../ui/Footer";
+import CartItem from "../features/cart/CartItem";
+import { useNavigate } from "react-router-dom";
 
 function Checkout() {
   const methods = useForm();
   const { handleSubmit, register } = methods;
-  const onSubmit = (values) => console.log(values);
+  const onSubmit = (values) => {
+    setTriggerPayment((prev) => !prev);
+    console.log(values);
+  };
+  const navigate = useNavigate();
   const [paymentMethod, setPaymentMethod] = useState("");
+  const [triggerPayment, setTriggerPayment] = useState(false);
 
   return (
     <>
@@ -30,7 +37,10 @@ function Checkout() {
               inputName="name"
               type="text"
               placeholder="John Doe"
-              regex={{ value: "^[A-Za-z ]+$", message: "Only letters allowed" }}
+              regex={{
+                value: "^[A-Za-zÀ-ÿ\u00C0-\u017F ]+$",
+                message: "Only letters allowed",
+              }}
             />
             <Input
               label="Email Address"
@@ -61,7 +71,7 @@ function Checkout() {
               type="text"
               placeholder="1137 Williams Avenue"
               regex={{
-                value: "^[A-Za-z0-9 ]+$",
+                value: "^[A-Za-zÀ-ÿ\u00C0-\u017F0-9 ]+$",
                 message: "Invalid address",
               }}
             />
@@ -81,7 +91,7 @@ function Checkout() {
               type="text"
               placeholder="Los Angeles"
               regex={{
-                value: "^[A-Za-z ]+$",
+                value: "^[A-Za-zÀ-ÿ\u00C0-\u017F ]+$",
                 message: "Invalid city name",
               }}
             />
@@ -91,7 +101,7 @@ function Checkout() {
               type="text"
               placeholder="USA"
               regex={{
-                value: "^[A-Za-z ]+$",
+                value: "^[A-Za-zÀ-ÿ\u00C0-\u017F ]+$",
                 message: "Invalid country name",
               }}
             />
@@ -163,18 +173,7 @@ function Checkout() {
             </AnimatePresence>
           </div>
           <div className="flex flex-col p-5 space-y-4 m-5 bg-white rounded-md">
-            <div className="flex items-center justify-between">
-              <img
-                className="w-16 h-16 object-cover rounded-lg"
-                src={productImg}
-                alt="image-product"
-              />
-              <div className="flex flex-col">
-                <span>XX99 MK II</span>
-                <span>$2999</span>
-              </div>
-              <span>1x</span>
-            </div>
+            <CartItem productName="XX99 MK II" price="$2999" counter={false} />
             <div>
               <AmountItem label="Total" value="$3,400.00" />
               <AmountItem label="Shipping" value="$50.00" />
@@ -192,6 +191,79 @@ function Checkout() {
           </div>
         </form>
       </FormProvider>
+      <AnimatePresence>
+        {triggerPayment && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="fixed top-24 left-0 right-0 bottom-0 bg-black bg-opacity-50 z-40 flex justify-end px-4 pt-6 pb-36 lg:top-20">
+              <div className="bg-white w-full max-w-md h-full p-6 shadow-lg outline-none rounded-lg flex flex-col justify-around">
+                <div className="flex flex-col justify-start items-start space-y-4">
+                  <img
+                    src="/src/assets/checkout/icon-order-confirmation.svg"
+                    alt="confirmation"
+                  />
+                  <span className="uppercase font-600 text-2xl">
+                    Thank you for your order
+                  </span>
+                  <p className="text-gray-500">
+                    You will receive an email confirmation shortly
+                  </p>
+                </div>
+                <div className="mt-4 flex flex-col space-y-4 overflow-y-auto h-56 bg-gray-100 px-5 rounded-t-lg">
+                  <CartItem
+                    price="$7999"
+                    productName="XX99 MK VI"
+                    counter={false}
+                  />
+                  <CartItem
+                    price="$7999"
+                    productName="XX99 MK VI"
+                    counter={false}
+                  />
+                  <CartItem
+                    price="$7999"
+                    productName="XX99 MK VI"
+                    counter={false}
+                  />
+                  <CartItem
+                    price="$7999"
+                    productName="XX99 MK VI"
+                    counter={false}
+                  />
+                  <CartItem
+                    price="$7999"
+                    productName="XX99 MK VI"
+                    counter={false}
+                  />
+                </div>
+                <div>
+                  <div className="flex flex-col justify-between items-start  bg-black h-20 px-5 py-3 rounded-b-lg">
+                    <span className="text-gray-500 uppercase font-bold">
+                      grand total
+                    </span>
+                    <span className="font-bold text-white">$3,400.00</span>
+                  </div>
+                </div>
+                <div>
+                  <button
+                    onClick={() => {
+                      setTriggerPayment((prev) => !prev);
+                      navigate("/");
+                    }}
+                    className="w-full bg-[#D87D4A] text-xs tracking-widest text-white py-4 mt-4 uppercase"
+                  >
+                    back to home
+                  </button>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <Footer />
     </>
   );

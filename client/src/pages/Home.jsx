@@ -23,7 +23,7 @@ function Home() {
           />
         </picture>
 
-        <div className="z-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white h-96 md:h-[400px] flex flex-col justify-between py-11 lg:top-1/2 lg:-translate-x-1/2 lg:left-1/3 lg:-translate-y-1/2 lg:w-1/2 lg:text-start">
+        <div className="z-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white h-96 md:h-[400px] flex flex-col justify-between py-11 md:py-8 lg:top-1/2 lg:-translate-x-1/2 lg:left-1/3 lg:-translate-y-1/2 lg:w-1/2 lg:text-start">
           <span className="text-white text-sm font-200 tracking-[0.6em]">
             NEW PRODUCT
           </span>
