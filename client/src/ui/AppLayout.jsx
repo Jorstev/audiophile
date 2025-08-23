@@ -17,7 +17,7 @@ function AppLayout() {
   return (
     <div>
       <Header />
-      <main className="pt-24 lg:pt-20">
+      <main className="pt-24 lg:pt-20 ">
         <Outlet context={{ isLoading, isError, categoryProducts, error }} />
       </main>
     </div>

@@ -17,8 +17,8 @@ const CategoryLink: React.FC<CategoryLinkProps> = ({
   return (
     <div
       className={`${
-        menu ? "h-32 w-[290px]" : "h-44 w-[315px]"
-      } relative bg-[#f1f1f1] rounded-lg max-w-[21rem] mx-auto`}
+        menu ? "h-32 w-[290px]" : "h-44 w-[315px] lg:w-[325px] "
+      } relative bg-[#f1f1f1] rounded-lg `}
     >
       <img
         className={`${

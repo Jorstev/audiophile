@@ -27,7 +27,7 @@ const Button: React.FC<ButtonProps> = ({
     primaryLink: (
       <Link
         to={linkTo}
-        className="px-7 py-4 font-600 bg-[#D87D4A] text-xs tracking-widest text-white"
+        className="px-7 py-4 font-600 bg-[#D87D4A] text-xs tracking-widest text-white hover:bg-[#FBAF85]"
       >
         {text}
       </Link>
@@ -44,14 +44,16 @@ const Button: React.FC<ButtonProps> = ({
         }
         className="flex items-center space-x-2 cursor-pointer"
       >
-        <span className="tracking-wider font-600 text-sm">{text}</span>
+        <span className="tracking-wider font-600 text-sm hover:text-[#D87D4A]">
+          {text}
+        </span>
         <IoIosArrowForward color="#D87D4A" />
       </Link>
     ),
     tertiaryLink: (
       <Link
         to={linkTo}
-        className="border border-black font-600 px-7 py-4 bg-transparent text-black text-xs tracking-widest"
+        className="border border-black font-600 px-7 py-4 bg-transparent text-black text-xs tracking-widest hover:bg-black hover:text-white"
       >
         {text}
       </Link>
