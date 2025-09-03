@@ -32,7 +32,7 @@ function Input({
       <label className="space-y-2 ">
         <span className="font-600 text-xs">{label}</span>
         <input
-          className="border-2 w-full p-3 rounded-md outline-none placeholder:text-sm"
+          className="border-2 w-full p-3  rounded-md outline-none placeholder:text-sm"
           type={type}
           placeholder={placeholder}
           {...register(inputName, {

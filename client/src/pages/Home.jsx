@@ -43,7 +43,7 @@ function Home() {
       <main className="lg:px-16">
         <CategorySection />
 
-        <section className="px-6 flex flex-col space-y-6 min-w-[360px]">
+        <section className="px-6 flex flex-col space-y-6 min-w-[360px] xl:max-w-[1200px] xl:mx-auto xl:px-0">
           <div className="relative bg-[#D87D4A]  h-[37.5rem] md:h-[45rem] rounded-lg flex flex-col justify-evenly items-center text-white text-center py-7 overflow-hidden">
             <img
               className=" absolute -top-0 left-0 w-full h-auto object-fit"

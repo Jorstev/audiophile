@@ -27,7 +27,7 @@ const Button: React.FC<ButtonProps> = ({
     primaryLink: (
       <Link
         to={linkTo}
-        className="px-7 py-4 font-600 bg-[#D87D4A] text-xs tracking-widest text-white hover:bg-[#FBAF85]"
+        className="inline-block px-7 py-4 font-600 bg-[#D87D4A] text-xs tracking-widest text-white hover:bg-[#FBAF85]"
       >
         {text}
       </Link>
@@ -64,6 +64,19 @@ const Button: React.FC<ButtonProps> = ({
         to={linkTo}
         className="px-7 py-4 font-600 bg-black text-xs tracking-widest"
       >
+        {text}
+      </Link>
+    ),
+    LinkHeader: (
+      <Link
+        to={linkTo}
+        className="text-white font-200 text-sm tracking-[0.3em] hover:text-[#D87D4A]"
+      >
+        {text}
+      </Link>
+    ),
+    LinkFooter: (
+      <Link to={linkTo} className="hover:text-[#D87D4A] ">
         {text}
       </Link>
     ),

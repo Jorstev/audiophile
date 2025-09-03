@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Button from "./Button";
 const Footer: React.FC = () => {
   return (
     <section className="relative bg-[#101010] h-[41rem] md:h-[25rem] flex flex-col justify-around items-center py-5 w-full min-w-[360px]">
@@ -10,10 +11,10 @@ const Footer: React.FC = () => {
         </div>
         <div className="text-white tracking-[0.2em] text-[13px] font-600 md:w-full md:px-8 lg:px-0">
           <ul className="space-y-5 text-center flex flex-col md:flex-row md:w-full md:space-y-0 md:space-x-8 lg:justify-end">
-            <Link to={"/"}>HOME</Link>
-            <Link to={"/headphones"}>HEADPHONE</Link>
-            <Link to={"/speakers"}>SPEAKERS</Link>
-            <Link to={"/earphones"}>EARPHONES</Link>
+            <Button type="LinkFooter" linkTo={"/"} text="HOME" />
+            <Button type="LinkFooter" linkTo={"/headphones"} text="HEADPHONE" />
+            <Button type="LinkFooter" linkTo={"/speakers"} text="SPEAKERS" />
+            <Button type="LinkFooter" linkTo={"/earphones"} text="EARPHONES" />
           </ul>
         </div>
       </div>
@@ -33,16 +34,19 @@ const Footer: React.FC = () => {
             Copyright 2021. All Rights Reserved
           </span>
         </div>
-        <div className="flex space-x-4">
+        <div className="flex space-x-4 ">
           <img
+            className="hover:scale-110 transition-transform duration-200"
             src="/src/assets/shared/desktop/icon-facebook.svg"
             alt="facebook-icon"
           />
           <img
+            className="hover:scale-110 transition-transform duration-200"
             src="/src/assets/shared/desktop/icon-twitter.svg"
             alt="twitter-icon"
           />
           <img
+            className="hover:scale-110 transition-transform duration-200"
             src="/src/assets/shared/desktop/icon-instagram.svg"
             alt="instagram-icon"
           />

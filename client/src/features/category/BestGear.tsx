@@ -2,7 +2,7 @@ import React from "react";
 
 const BestGear: React.FC = () => {
   return (
-    <section className="px-6 py-24 flex flex-col space-y-6 text-center w-full items-center min-w-[360px] lg:flex-row ">
+    <section className="px-6 py-24 flex flex-col space-y-6 text-center w-full items-center min-w-[360px] lg:flex-row xl:max-w-[1200px] xl:mx-auto xl:px-0">
       <div className="lg:w-1/2 lg:order-2">
         <picture>
           <source

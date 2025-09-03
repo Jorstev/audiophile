@@ -7,8 +7,10 @@ import { useOutletContext, useParams } from "react-router-dom";
 
 interface Product {
   id: number;
-  image: {
+  categoryImage: {
     mobile: string;
+    tablet: string;
+    desktop: string;
   };
   description: string;
   name: string;
@@ -35,13 +37,13 @@ function CategoryMain() {
 
   return (
     <div className="min-w-[360px]">
-      <div className="bg-[#010101] text-white h-24 flex items-center justify-center text-[28px] font-600 tracking-wider">
+      <div className="bg-[#010101]  text-white h-24 flex items-center justify-center text-[28px] font-600 tracking-wider">
         <span className="uppercase">{category}</span>
       </div>
       {categoryProducts
         .filter((product) => product.category === category)
-        .map((product) => (
-          <ProductItem product={product} key={product.id} />
+        .map((product, index) => (
+          <ProductItem product={product} index={index} key={product.id} />
         ))}
       <CategorySection />
       <BestGear />

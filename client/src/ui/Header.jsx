@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import CartItem from "../features/cart/CartItem";
 import { AnimatePresence, motion } from "framer-motion";
 import CategorySection from "../features/category/CategorySection";
+import Button from "./Button";
 
 function Header() {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -34,31 +35,12 @@ function Header() {
           />
         </Link>
         <div className="hidden lg:flex lg:items-center lg:space-x-6">
-          <Link
-            to={"/"}
-            className="text-white font-200 text-sm tracking-[0.3em]"
-          >
-            HOME
-          </Link>
-          <Link
-            to={"/headphones"}
-            className="text-white font-200 text-sm tracking-[0.3em]"
-          >
-            HEADPHONES
-          </Link>
-          <Link
-            to={"/speakers"}
-            className="text-white font-200 text-sm tracking-[0.3em]"
-          >
-            SPEAKERS
-          </Link>
-          <Link
-            to={"/earphones"}
-            className="text-white font-200 text-sm tracking-[0.3em]"
-          >
-            EARPHONES
-          </Link>
+          <Button type="LinkHeader" linkTo={"/"} text="HOME" />
+          <Button type="LinkHeader" linkTo={"/headphones"} text="HEADPHONES" />
+          <Button type="LinkHeader" linkTo={"/speakers"} text="SPEAKERS" />
+          <Button type="LinkHeader" linkTo={"/earphones"} text="EARPHONES" />
         </div>
+
         <div className=" flex md:basis-[70%] lg:basis-0 items-center justify-end">
           <AiOutlineShoppingCart
             className="text-2xl"

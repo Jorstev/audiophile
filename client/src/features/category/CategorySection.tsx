@@ -10,7 +10,7 @@ const CategorySection: React.FC<CategorySectionProps> = ({ menu = false }) => {
     <section
       className={`${
         menu ? "py-14 md:py-20" : "py-24"
-      }  flex flex-col space-y-20 w-full md:flex-row px-6 md:items-center md:space-y-0 min-w-[360px] lg:justify-between items-center gap-x-2`}
+      }  flex flex-col space-y-20 w-full md:flex-row px-6 md:items-center md:space-y-0 min-w-[360px] lg:justify-between items-center gap-x-2 xl:max-w-[1200px] xl:mx-auto xl:px-0`}
     >
       <CategoryLink
         image={
