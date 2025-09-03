@@ -67,112 +67,122 @@ function Checkout() {
             <h3 className="text-[13px] font-600 tracking-wide uppercase mb-4 text-[#D87D4A]">
               shipping info
             </h3>
-            <Input
-              label="Your Address"
-              inputName="address"
-              type="text"
-              placeholder="1137 Williams Avenue"
-              regex={{
-                value: "^[A-Za-zÀ-ÿ\u00C0-\u017F0-9 ]+$",
-                message: "Invalid address",
-              }}
-            />
-            <Input
-              label="ZIP Code"
-              inputName="zip"
-              type="text"
-              placeholder="12345"
-              regex={{
-                value: "^[0-9]{5}$",
-                message: "Invalid ZIP code",
-              }}
-            />
-            <Input
-              label="City"
-              inputName="city"
-              type="text"
-              placeholder="Los Angeles"
-              regex={{
-                value: "^[A-Za-zÀ-ÿ\u00C0-\u017F ]+$",
-                message: "Invalid city name",
-              }}
-            />
-            <Input
-              label="Country"
-              inputName="country"
-              type="text"
-              placeholder="USA"
-              regex={{
-                value: "^[A-Za-zÀ-ÿ\u00C0-\u017F ]+$",
-                message: "Invalid country name",
-              }}
-            />
+            <div className="space-y-4 md:grid md:grid-cols-2 md:grid-rows-3 md:items-baseline md:gap-4">
+              <Input
+                customStyle="md:col-span-2 md:col-start-1 md:col-end-3"
+                label="Your Address"
+                inputName="address"
+                type="text"
+                placeholder="1137 Williams Avenue"
+                regex={{
+                  value: "^[A-Za-zÀ-ÿ\u00C0-\u017F0-9 ]+$",
+                  message: "Invalid address",
+                }}
+              />
+
+              <Input
+                label="ZIP Code"
+                inputName="zip"
+                type="text"
+                placeholder="12345"
+                regex={{
+                  value: "^[0-9]{5}$",
+                  message: "Invalid ZIP code",
+                }}
+              />
+              <Input
+                label="City"
+                inputName="city"
+                type="text"
+                placeholder="Los Angeles"
+                regex={{
+                  value: "^[A-Za-zÀ-ÿ\u00C0-\u017F ]+$",
+                  message: "Invalid city name",
+                }}
+              />
+
+              <Input
+                label="Country"
+                inputName="country"
+                type="text"
+                placeholder="USA"
+                regex={{
+                  value: "^[A-Za-zÀ-ÿ\u00C0-\u017F ]+$",
+                  message: "Invalid country name",
+                }}
+              />
+            </div>
             <h3 className="text-[13px] font-600 tracking-wide uppercase mb-4 text-[#D87D4A]">
               payment details
             </h3>
-            <label className="mb-2 font-600 text-xs">Payment Method</label>
-            <label className="flex items-center space-x-2 border-2 w-full p-3 rounded-md outline-none">
-              <input
-                type="radio"
-                value="eMoney"
-                {...register("paymentMethod", { required: true })}
-                className="accent-[#D87D4A]"
-                onChange={() => setPaymentMethod("eMoney")}
-              />
-              <span className="font-600 text-xs">e-Money</span>
-            </label>
-            <label className="flex items-center space-x-2 border-2 w-full p-3 rounded-md outline-none">
-              <input
-                type="radio"
-                value="cashOnDelivery"
-                {...register("paymentMethod", { required: true })}
-                className="accent-[#D87D4A]"
-                onChange={() => setPaymentMethod("cashOnDelivery")}
-              />
-              <span className="font-600 text-xs">Cash on Delivery</span>
-            </label>
-            <AnimatePresence>
-              {paymentMethod === "eMoney" && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <Input
-                    label="e-Money Number"
-                    inputName="eMoneyNumber"
-                    type="text"
-                    placeholder="1234561234"
-                    regex={{
-                      value: "^[0-9]*$",
-                      message: "Invalid e-Money Number",
-                    }}
-                  />
-                </motion.div>
-              )}
-            </AnimatePresence>
-            <AnimatePresence>
-              {paymentMethod === "eMoney" && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <Input
-                    label="e-Money PIN"
-                    inputName="eMoneyPIN"
-                    type="text"
-                    placeholder="123456"
-                    regex={{
-                      value: "^[0-9]{6}$",
-                      message: "Invalid e-Money PIN, Enter 6 digits",
-                    }}
-                  />
-                </motion.div>
-              )}
-            </AnimatePresence>
+            <div className="space-y-4 md:grid md:grid-cols-2 md:grid-rows-2 md:gap-4 md:items-baseline">
+              <label className="mb-2 font-600 text-xs md:row-span-2 md:col-start-1 md:row-start-1">
+                Payment Method
+              </label>
+              <label className="flex items-center space-x-2 border-2 w-full p-3 rounded-md outline-none">
+                <input
+                  type="radio"
+                  value="eMoney"
+                  {...register("paymentMethod", { required: true })}
+                  className="accent-[#D87D4A]"
+                  onChange={() => setPaymentMethod("eMoney")}
+                />
+                <span className="font-600 text-xs">e-Money</span>
+              </label>
+              <label className="flex items-center space-x-2 border-2 w-full p-3 rounded-md outline-none">
+                <input
+                  type="radio"
+                  value="cashOnDelivery"
+                  {...register("paymentMethod", { required: true })}
+                  className="accent-[#D87D4A]"
+                  onChange={() => setPaymentMethod("cashOnDelivery")}
+                />
+                <span className="font-600 text-xs">Cash on Delivery</span>
+              </label>
+            </div>
+            {paymentMethod === "eMoney" && (
+              <div className="md:grid md:grid-cols-2 md:gap-4">
+                <AnimatePresence>
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Input
+                      label="e-Money Number"
+                      inputName="eMoneyNumber"
+                      type="text"
+                      placeholder="1234561234"
+                      regex={{
+                        value: "^[0-9]*$",
+                        message: "Invalid e-Money Number",
+                      }}
+                    />
+                  </motion.div>
+                </AnimatePresence>
+
+                <AnimatePresence>
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Input
+                      label="e-Money PIN"
+                      inputName="eMoneyPIN"
+                      type="text"
+                      placeholder="123456"
+                      regex={{
+                        value: "^[0-9]{6}$",
+                        message: "Invalid e-Money PIN, Enter 6 digits",
+                      }}
+                    />
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            )}
           </div>
           <div className="flex flex-col p-5 space-y-4 m-5 bg-white rounded-md">
             <CartItem productName="XX99 MK II" price="$2999" counter={false} />

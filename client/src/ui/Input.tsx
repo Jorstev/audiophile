@@ -12,6 +12,7 @@ interface InputProps {
   type: string;
   placeholder?: string;
   regex: RegExp;
+  customStyle?: string;
 }
 
 function Input({
@@ -20,6 +21,7 @@ function Input({
   regex,
   type,
   placeholder,
+  customStyle,
   ...rest
 }: InputProps) {
   const {
@@ -29,10 +31,10 @@ function Input({
 
   return (
     <>
-      <label className="space-y-2 ">
+      <label className={`space-y-2 ${customStyle}`}>
         <span className="font-600 text-xs">{label}</span>
         <input
-          className="border-2 w-full p-3  rounded-md outline-none placeholder:text-sm"
+          className={`border-2 w-full p-3  rounded-md outline-none placeholder:text-sm`}
           type={type}
           placeholder={placeholder}
           {...register(inputName, {
