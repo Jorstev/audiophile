@@ -59,9 +59,9 @@ function Header() {
           >
             <div
               onClick={toggleCart}
-              className="fixed top-24 left-0 right-0 bottom-0 bg-black bg-opacity-50 z-40 flex justify-end px-4 pt-6 pb-36 lg:top-20"
+              className="fixed top-24 left-0 right-0 bottom-0 bg-black bg-opacity-50 z-40 flex justify-end px-4 pt-6 pb-36 lg:top-20 "
             >
-              <div className="bg-white w-full max-w-md h-full p-6 shadow-lg outline-none rounded-lg flex flex-col justify-around">
+              <div className="bg-white w-full max-w-md p-6 shadow-lg outline-none rounded-lg flex flex-col justify-around h-[fit-content] space-y-6">
                 <div className="flex justify-between items-center pb-4">
                   <h3 className="uppercase">cart (3)</h3>
                   <span className="text-sm text-gray-500 cursor-pointer">

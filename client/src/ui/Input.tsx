@@ -21,7 +21,7 @@ function Input({
   regex,
   type,
   placeholder,
-  customStyle,
+  customStyle = "",
   ...rest
 }: InputProps) {
   const {
@@ -46,14 +46,16 @@ function Input({
           })}
           {...rest}
         />
+        {errors[inputName] && (
+          <p className="text-red-500 text-sm mt-1">
+            {errors[inputName].type === "required"
+              ? "Required field"
+              : typeof errors[inputName].message === "string"
+              ? errors[inputName].message
+              : ""}
+          </p>
+        )}
       </label>
-      {errors[inputName] && (
-        <p className="text-red-500 text-sm mt-1">
-          {typeof errors[inputName].message === "string"
-            ? errors[inputName].message
-            : ""}
-        </p>
-      )}
     </>
   );
 }

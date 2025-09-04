@@ -21,188 +21,225 @@ function Checkout() {
 
   return (
     <>
-      <FormProvider {...methods}>
-        <span className="text-sm text-gray-500 cursor-pointer">Go Back</span>
-        <form
-          className="flex w-full h-full flex-col bg-[#fafafa] "
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <div className="flex flex-col p-5 space-y-4 m-5 bg-white rounded-md">
-            <h2 className="text-[28px] font-[600] uppercase mb-4">Checkout</h2>
-            <h3 className="text-[13px] font-600 tracking-wide uppercase mb-4 text-[#D87D4A]">
-              billing details
-            </h3>
-            <div className="md:grid md:grid-cols-2 md:grid-rows-2 md:gap-4 md:items-baseline space-y-4 ">
-              <Input
-                label="Name"
-                inputName="name"
-                type="text"
-                placeholder="John Doe"
-                regex={{
-                  value: "^[A-Za-zÀ-ÿ\u00C0-\u017F ]+$",
-                  message: "Only letters allowed",
-                }}
-              />
-              <Input
-                label="Email Address"
-                inputName="email"
-                type="email"
-                placeholder="john@example.com"
-                regex={{
-                  value: "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}$",
-                  message: "Invalid email address",
-                }}
-              />
-              <Input
-                label="Phone Number"
-                inputName="phone"
-                type="tel"
-                placeholder="555333111"
-                regex={{
-                  value: "^[0-9]*$",
-                  message: "Invalid phone number",
-                }}
-              />
-            </div>
-            <h3 className="text-[13px] font-600 tracking-wide uppercase mb-4 text-[#D87D4A]">
-              shipping info
-            </h3>
-            <div className="space-y-4 md:grid md:grid-cols-2 md:grid-rows-3 md:items-baseline md:gap-4">
-              <Input
-                customStyle="md:col-span-2 md:col-start-1 md:col-end-3"
-                label="Your Address"
-                inputName="address"
-                type="text"
-                placeholder="1137 Williams Avenue"
-                regex={{
-                  value: "^[A-Za-zÀ-ÿ\u00C0-\u017F0-9 ]+$",
-                  message: "Invalid address",
-                }}
-              />
-
-              <Input
-                label="ZIP Code"
-                inputName="zip"
-                type="text"
-                placeholder="12345"
-                regex={{
-                  value: "^[0-9]{5}$",
-                  message: "Invalid ZIP code",
-                }}
-              />
-              <Input
-                label="City"
-                inputName="city"
-                type="text"
-                placeholder="Los Angeles"
-                regex={{
-                  value: "^[A-Za-zÀ-ÿ\u00C0-\u017F ]+$",
-                  message: "Invalid city name",
-                }}
-              />
-
-              <Input
-                label="Country"
-                inputName="country"
-                type="text"
-                placeholder="USA"
-                regex={{
-                  value: "^[A-Za-zÀ-ÿ\u00C0-\u017F ]+$",
-                  message: "Invalid country name",
-                }}
-              />
-            </div>
-            <h3 className="text-[13px] font-600 tracking-wide uppercase mb-4 text-[#D87D4A]">
-              payment details
-            </h3>
-            <div className="space-y-4 md:grid md:grid-cols-2 md:grid-rows-2 md:gap-4 md:items-baseline">
-              <label className="mb-2 font-600 text-xs md:row-span-2 md:col-start-1 md:row-start-1">
-                Payment Method
-              </label>
-              <label className="flex items-center space-x-2 border-2 w-full p-3 rounded-md outline-none">
-                <input
-                  type="radio"
-                  value="eMoney"
-                  {...register("paymentMethod", { required: true })}
-                  className="accent-[#D87D4A]"
-                  onChange={() => setPaymentMethod("eMoney")}
-                />
-                <span className="font-600 text-xs">e-Money</span>
-              </label>
-              <label className="flex items-center space-x-2 border-2 w-full p-3 rounded-md outline-none">
-                <input
-                  type="radio"
-                  value="cashOnDelivery"
-                  {...register("paymentMethod", { required: true })}
-                  className="accent-[#D87D4A]"
-                  onChange={() => setPaymentMethod("cashOnDelivery")}
-                />
-                <span className="font-600 text-xs">Cash on Delivery</span>
-              </label>
-            </div>
-            {paymentMethod === "eMoney" && (
-              <div className="md:grid md:grid-cols-2 md:gap-4">
-                <AnimatePresence>
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <Input
-                      label="e-Money Number"
-                      inputName="eMoneyNumber"
-                      type="text"
-                      placeholder="1234561234"
-                      regex={{
-                        value: "^[0-9]*$",
-                        message: "Invalid e-Money Number",
-                      }}
-                    />
-                  </motion.div>
-                </AnimatePresence>
-
-                <AnimatePresence>
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <Input
-                      label="e-Money PIN"
-                      inputName="eMoneyPIN"
-                      type="text"
-                      placeholder="123456"
-                      regex={{
-                        value: "^[0-9]{6}$",
-                        message: "Invalid e-Money PIN, Enter 6 digits",
-                      }}
-                    />
-                  </motion.div>
-                </AnimatePresence>
-              </div>
-            )}
-          </div>
-          <div className="flex flex-col p-5 space-y-4 m-5 bg-white rounded-md">
-            <CartItem productName="XX99 MK II" price="$2999" counter={false} />
-            <div>
-              <AmountItem label="Total" value="$3,400.00" />
-              <AmountItem label="Shipping" value="$50.00" />
-              <AmountItem label="VAT (included)" value="$680.00" />
-              <AmountItem label="Grand Total" value="$3,400.00" />
-            </div>
-            <div>
-              <button
-                type="submit"
-                className="w-full bg-[#D87D4A] text-xs tracking-widest text-white py-4 mt-4 uppercase"
-              >
+      <div className="bg-[#fafafa] w-full h-full">
+        <FormProvider {...methods}>
+          <span className="text-sm text-gray-500 cursor-pointer">Go Back</span>
+          <form
+            className="flex w-full h-full flex-col xl:flex-row bg-[#fafafa] xl:max-w-[1200px] xl:mx-auto xl:px-0 xl:py-8"
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <div className="flex flex-col p-5 space-y-4 m-5 bg-white rounded-md xl:w-[70%]">
+              <h2 className="text-[28px] font-[600] uppercase mb-4">
                 Checkout
-              </button>
+              </h2>
+              <h3 className="text-[13px] font-600 tracking-wide uppercase mb-4 text-[#D87D4A]">
+                billing details
+              </h3>
+              <div className="md:grid md:grid-cols-2 md:grid-rows-2 md:gap-4 md:items-baseline space-y-4 ">
+                <Input
+                  label="Name"
+                  inputName="name"
+                  type="text"
+                  placeholder="John Doe"
+                  regex={{
+                    value: "^[A-Za-zÀ-ÿ\u00C0-\u017F ]+$",
+                    message: "Only letters allowed",
+                  }}
+                />
+                <Input
+                  label="Email Address"
+                  inputName="email"
+                  type="email"
+                  placeholder="john@example.com"
+                  regex={{
+                    value: "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}$",
+                    message: "Invalid email address",
+                  }}
+                />
+                <Input
+                  label="Phone Number"
+                  inputName="phone"
+                  type="tel"
+                  placeholder="555333111"
+                  regex={{
+                    value: "^[0-9]*$",
+                    message: "Invalid phone number",
+                  }}
+                />
+              </div>
+              <h3 className="text-[13px] font-600 tracking-wide uppercase mb-4 text-[#D87D4A]">
+                shipping info
+              </h3>
+              <div className="space-y-4 md:grid md:grid-cols-2 md:grid-rows-3 md:items-baseline md:gap-4">
+                <Input
+                  customStyle="md:col-span-2 md:col-start-1 md:col-end-3"
+                  label="Your Address"
+                  inputName="address"
+                  type="text"
+                  placeholder="1137 Williams Avenue"
+                  regex={{
+                    value: "^[A-Za-zÀ-ÿ\u00C0-\u017F0-9 ]+$",
+                    message: "Invalid address",
+                  }}
+                />
+
+                <Input
+                  label="ZIP Code"
+                  inputName="zip"
+                  type="text"
+                  placeholder="12345"
+                  regex={{
+                    value: "^[0-9]{5}$",
+                    message: "Invalid ZIP code",
+                  }}
+                />
+                <Input
+                  label="City"
+                  inputName="city"
+                  type="text"
+                  placeholder="Los Angeles"
+                  regex={{
+                    value: "^[A-Za-zÀ-ÿ\u00C0-\u017F ]+$",
+                    message: "Invalid city name",
+                  }}
+                />
+
+                <Input
+                  label="Country"
+                  inputName="country"
+                  type="text"
+                  placeholder="USA"
+                  regex={{
+                    value: "^[A-Za-zÀ-ÿ\u00C0-\u017F ]+$",
+                    message: "Invalid country name",
+                  }}
+                />
+              </div>
+              <h3 className="text-[13px] font-600 tracking-wide uppercase mb-4 text-[#D87D4A]">
+                payment details
+              </h3>
+              <div className="space-y-4 md:grid md:grid-cols-2 md:grid-rows-2 md:gap-4 md:items-baseline">
+                <label className="mb-2 font-600 text-xs md:row-span-2 md:col-start-1 md:row-start-1">
+                  Payment Method
+                </label>
+                <label className="flex items-center space-x-2 border-2 w-full p-3 rounded-md outline-none">
+                  <input
+                    type="radio"
+                    value="eMoney"
+                    {...register("paymentMethod", { required: true })}
+                    className="accent-[#D87D4A]"
+                    onChange={() => setPaymentMethod("eMoney")}
+                  />
+                  <span className="font-600 text-xs">e-Money</span>
+                </label>
+                <label className="flex items-center space-x-2 border-2 w-full p-3 rounded-md outline-none">
+                  <input
+                    type="radio"
+                    value="cashOnDelivery"
+                    {...register("paymentMethod", { required: true })}
+                    className="accent-[#D87D4A]"
+                    onChange={() => setPaymentMethod("cashOnDelivery")}
+                  />
+                  <span className="font-600 text-xs">Cash on Delivery</span>
+                </label>
+              </div>
+              {paymentMethod === "eMoney" && (
+                <div className="md:grid md:grid-cols-2 md:gap-4">
+                  <AnimatePresence>
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <Input
+                        label="e-Money Number"
+                        inputName="eMoneyNumber"
+                        type="text"
+                        placeholder="1234561234"
+                        regex={{
+                          value: "^[0-9]*$",
+                          message: "Invalid e-Money Number",
+                        }}
+                      />
+                    </motion.div>
+                  </AnimatePresence>
+
+                  <AnimatePresence>
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <Input
+                        label="e-Money PIN"
+                        inputName="eMoneyPIN"
+                        type="text"
+                        placeholder="123456"
+                        regex={{
+                          value: "^[0-9]{6}$",
+                          message: "Invalid e-Money PIN, Enter 6 digits",
+                        }}
+                      />
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+              )}
+              {paymentMethod === "cashOnDelivery" && (
+                <div className="">
+                  <AnimatePresence>
+                    <motion.div
+                      className="flex justify-around space-x-7 items-center"
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <img
+                        className="block"
+                        src="/src/assets/checkout/icon-cash-on-delivery.svg"
+                        alt="cashDelivery"
+                      />
+                      <span className=" text-gray-400 text-sm block">
+                        The ‘Cash on Delivery’ option enables you to pay in cash
+                        when our delivery courier arrives at your residence.
+                        Just make sure your address is correct so that your
+                        order will not be cancelled.
+                      </span>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+              )}
             </div>
-          </div>
-        </form>
-      </FormProvider>
+            {/* Summary   */}
+            <div className="flex flex-col p-5 space-y-4 m-5 bg-white rounded-md xl:w-[30%] xl:h-[fit-content]">
+              <h3 className="text-lg font-600 tracking-wide uppercase mb-4">
+                summary
+              </h3>
+              <CartItem
+                productName="XX99 MK II"
+                price="$2999"
+                counter={false}
+              />
+              <div>
+                <AmountItem label="Total" value="$3,400.00" />
+                <AmountItem label="Shipping" value="$50.00" />
+                <AmountItem label="VAT (included)" value="$680.00" />
+                <AmountItem label="Grand Total" value="$3,400.00" />
+              </div>
+              <div>
+                <button
+                  type="submit"
+                  className="w-full bg-[#D87D4A] text-xs tracking-widest text-white py-4 mt-4 uppercase hover:bg-[#FBAF85]"
+                >
+                  Continue & pay
+                </button>
+              </div>
+            </div>
+          </form>
+        </FormProvider>
+      </div>
       <AnimatePresence>
         {triggerPayment && (
           <motion.div
@@ -211,8 +248,8 @@ function Checkout() {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="fixed top-24 left-0 right-0 bottom-0 bg-black bg-opacity-50 z-40 flex justify-end px-4 pt-6 pb-36 lg:top-20">
-              <div className="bg-white w-full max-w-md h-full p-6 shadow-lg outline-none rounded-lg flex flex-col justify-around">
+            <div className="fixed top-24 left-0 right-0 bottom-0 bg-black bg-opacity-50 z-40 flex justify-end lg:justify-center px-4 pt-6 pb-2 lg:top-20 ">
+              <div className="bg-white w-full max-w-md p-6 shadow-lg outline-none rounded-lg flex flex-col justify-around h-[fit-content] space-y-6">
                 <div className="flex flex-col justify-start items-start space-y-4">
                   <img
                     src="/src/assets/checkout/icon-order-confirmation.svg"
@@ -225,34 +262,13 @@ function Checkout() {
                     You will receive an email confirmation shortly
                   </p>
                 </div>
-                <div className="mt-4 flex flex-col space-y-4 overflow-y-auto h-56 bg-gray-100 px-5 rounded-t-lg">
-                  <CartItem
-                    price="$7999"
-                    productName="XX99 MK VI"
-                    counter={false}
-                  />
-                  <CartItem
-                    price="$7999"
-                    productName="XX99 MK VI"
-                    counter={false}
-                  />
-                  <CartItem
-                    price="$7999"
-                    productName="XX99 MK VI"
-                    counter={false}
-                  />
-                  <CartItem
-                    price="$7999"
-                    productName="XX99 MK VI"
-                    counter={false}
-                  />
-                  <CartItem
-                    price="$7999"
-                    productName="XX99 MK VI"
-                    counter={false}
-                  />
-                </div>
                 <div>
+                  <div className="mt-4 flex flex-col space-y-4  bg-gray-100 px-5 rounded-t-lg">
+                    <span className="block text-base font-semibold text-[#D87D4A]  rounded-lg  py-2 text-center shadow-sm mb-2">
+                      3 items purchased
+                    </span>
+                  </div>
+
                   <div className="flex flex-col justify-between items-start  bg-black h-20 px-5 py-3 rounded-b-lg">
                     <span className="text-gray-500 uppercase font-bold">
                       grand total
@@ -260,6 +276,7 @@ function Checkout() {
                     <span className="font-bold text-white">$3,400.00</span>
                   </div>
                 </div>
+
                 <div>
                   <button
                     onClick={() => {

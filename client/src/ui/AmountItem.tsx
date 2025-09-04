@@ -9,7 +9,13 @@ function AmountItem({ label, value }: AmountItemProps) {
   return (
     <div className="flex justify-between items-center mt-4">
       <span className="text-gray-500 uppercase">{label}</span>
-      <span className="font-bold">{value}</span>
+      <span
+        className={`font-bold ${
+          label === "Grand Total" ? "text-[#D87D4A]" : "text-gray-900"
+        }`}
+      >
+        {value}
+      </span>
     </div>
   );
 }
