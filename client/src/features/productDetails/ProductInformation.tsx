@@ -6,6 +6,9 @@ import { useParams } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
 import Loader from "../../ui/Loader";
 import Counter from "../../ui/Counter";
+import { useDispatch, useSelector } from "react-redux";
+import { reset } from "./productSlice";
+import currencyFormat from "../../utils/currencyFormat";
 
 interface IncludeItem {
   quantity: number;
@@ -64,13 +67,11 @@ interface OutletContext {
 
 const ProductInformation: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  console.log(id);
+
+  const dispatch = useDispatch();
+
   const { isLoading, isError, categoryProducts, error } =
     useOutletContext<OutletContext>();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [id]);
 
   if (isLoading)
     return (
@@ -82,6 +83,15 @@ const ProductInformation: React.FC = () => {
   const product = categoryProducts?.find(
     (product) => product.id === Number(id)
   );
+
+  const itemCount = useSelector((state: any) => state.product.counter);
+  const OnAddToCart = () => {
+    localStorage.setItem(
+      `cart_${product?.id}`,
+      JSON.stringify({ ...product, itemCount })
+    );
+    dispatch(reset());
+  };
 
   return (
     <section className="min-w-[360px] pt-16 px-6 py-16 flex flex-col mx-auto xl:max-w-[1200px] xl:mx-auto xl:px-0">
@@ -114,11 +124,17 @@ const ProductInformation: React.FC = () => {
               {product?.description}
             </p>
             <span className="text-lg font-600 tracking-wider">
-              ${product?.price}
+              {currencyFormat(product?.price ?? 0)}
             </span>
             <div className="flex space-x-5">
-              <Counter></Counter>
-              <Button type="primaryBtn" text="ADD TO CART" linkTo="#" />
+              <Counter itemCount={itemCount} />
+              <Button
+                type="primaryBtn"
+                text="ADD TO CART"
+                linkTo="#"
+                onClick={OnAddToCart}
+                disabled={itemCount === 0}
+              />
             </div>
           </div>
         </div>
@@ -197,7 +213,6 @@ const ProductInformation: React.FC = () => {
 
                 <h3 className="text-lg font-semibold">{other?.name}</h3>
                 <Button
-                  key={product.id}
                   type="primaryBtn"
                   text="SEE PRODUCT"
                   linkTo={`/productDetails/${product.id}`}

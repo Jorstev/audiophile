@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { IoMenuSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
@@ -6,10 +6,43 @@ import CartItem from "../features/cart/CartItem";
 import { AnimatePresence, motion } from "framer-motion";
 import CategorySection from "../features/category/CategorySection";
 import Button from "./Button";
+import currencyFormat from "../utils/currencyFormat.tsx";
 
 function Header() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [keysToRemove, setKeysToRemove] = useState([]);
+
+  const getCartItems = () => {
+    const items = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+
+      const item = JSON.parse(localStorage.getItem(key));
+      if (item && item.name && item.price) {
+        items.push(item);
+      }
+    }
+    return items;
+  };
+
+  const cartItems = getCartItems();
+  const TotalCartAmount = cartItems.reduce(
+    (acc, item) => acc + item.price * item.itemCount,
+    0
+  );
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const updatedCartItems = getCartItems();
+      console.log("Storage changed, updated cart items:", updatedCartItems);
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
 
   const toggleCart = () => {
     setIsCartOpen((prev) => !prev);
@@ -61,28 +94,62 @@ function Header() {
               onClick={toggleCart}
               className="fixed top-24 left-0 right-0 bottom-0 bg-black bg-opacity-50 z-40 flex justify-end px-4 pt-6 pb-36 lg:top-20 "
             >
-              <div className="bg-white w-full max-w-md p-6 shadow-lg outline-none rounded-lg flex flex-col justify-around h-[fit-content] space-y-6">
+              <div
+                className="bg-white w-full max-w-md p-6 shadow-lg outline-none rounded-lg flex flex-col justify-around h-[fit-content] space-y-6"
+                onClick={(e) => e.stopPropagation()}
+              >
                 <div className="flex justify-between items-center pb-4">
-                  <h3 className="uppercase">cart (3)</h3>
-                  <span className="text-sm text-gray-500 cursor-pointer">
+                  <h3 className="uppercase">cart ({cartItems.length})</h3>
+                  <span
+                    className="text-sm text-gray-500 cursor-pointer"
+                    onClick={() => {
+                      for (let i = localStorage.length - 1; i >= 0; i--) {
+                        const key = localStorage.key(i);
+                        if (key && key.startsWith("cart_")) {
+                          setKeysToRemove((prev) => [...prev, key]);
+                        }
+                      }
+
+                      keysToRemove.forEach((key) =>
+                        localStorage.removeItem(key)
+                      );
+                      window.dispatchEvent(new Event("storage"));
+                    }}
+                  >
                     Remove all
                   </span>
                 </div>
 
                 {/* Example cart content */}
-                <div className="mt-4 flex flex-col space-y-4 overflow-y-auto h-56">
-                  <CartItem price="$2999" productName="XX99 MK II" />
-                  <CartItem price="$3999" productName="XX99 MK I" />
-                  <CartItem price="$4999" productName="XX99 MK III" />
-                  <CartItem price="$5999" productName="XX99 MK IV" />
-                  <CartItem price="$6999" productName="XX99 MK V" />
-                  <CartItem price="$7999" productName="XX99 MK VI" />
-                  <CartItem />
-                </div>
+                {cartItems.length > 0 ? (
+                  <div className="mt-4 flex flex-col space-y-4 overflow-y-auto h-56">
+                    {cartItems.map((item) => (
+                      <CartItem
+                        key={item.id}
+                        price={item.price}
+                        productName={item.name}
+                        itemCount={item.itemCount}
+                        counter={false}
+                        image={item.image.mobile}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <div className="mt-4 flex flex-col items-center justify-center py-8 bg-[#fafafa] rounded-lg shadow-inner">
+                    <span className="text-[#D87D4A] text-lg font-semibold mb-2">
+                      Your cart is empty
+                    </span>
+                    <span className="text-gray-500 text-sm">
+                      Add some products to see them here!
+                    </span>
+                  </div>
+                )}
                 <div>
                   <div className="flex justify-between items-center mt-4">
                     <span className="text-gray-500 uppercase">Total</span>
-                    <span className="font-bold">$3,400.00</span>
+                    <span className="font-bold">
+                      {currencyFormat(TotalCartAmount)}
+                    </span>
                   </div>
                 </div>
                 <div>

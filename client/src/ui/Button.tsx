@@ -7,6 +7,7 @@ interface ButtonProps {
   linkTo: string;
   text: string;
   onClick?: () => void;
+  disabled?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -14,12 +15,16 @@ const Button: React.FC<ButtonProps> = ({
   linkTo,
   text,
   onClick,
+  disabled = false,
 }): JSX.Element | null => {
   const buttonType: Record<string, JSX.Element> = {
     primaryBtn: (
       <Link
         to={linkTo}
-        className="px-7 py-4 font-600 bg-[#D87D4A] text-xs tracking-widest text-white"
+        onClick={disabled ? undefined : onClick}
+        className={`px-7 py-4 font-600 bg-[#D87D4A] text-xs tracking-widest text-white${
+          disabled ? " opacity-50 pointer-events-none cursor-not-allowed" : ""
+        }`}
       >
         {text}
       </Link>
