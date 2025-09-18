@@ -36,7 +36,11 @@ function Home() {
           </span>
 
           <div>
-            <Button type={"primaryLink"} text={"SEE PRODUCT"} />
+            <Button
+              type={"primaryLink"}
+              text={"SEE PRODUCT"}
+              linkTo={"productDetails/4"}
+            />
           </div>
         </div>
       </section>
@@ -46,7 +50,7 @@ function Home() {
         <section className="px-6 flex flex-col space-y-6 min-w-[360px] xl:max-w-[1200px] xl:mx-auto xl:px-0">
           <div className="relative bg-[#D87D4A]  h-[37.5rem] md:h-[45rem] rounded-lg flex flex-col justify-evenly items-center text-white text-center py-7 overflow-hidden">
             <img
-              className=" absolute -top-0 left-0 w-full h-auto object-fit"
+              className=" absolute -top-0 left-0 w-full h-auto object-fit z-10"
               src="\src\assets\home\desktop\pattern-circles.svg"
               alt="pattern"
             />
@@ -67,7 +71,7 @@ function Home() {
                 />
               </picture>
             </div>
-            <div>
+            <div className="z-20">
               <h3 className="text-4xl md:text-[3.5rem] md:leading-tight tracking-wide font-600 text-white">
                 ZX9 <span className="block">SPEAKER</span>
               </h3>
@@ -76,7 +80,13 @@ function Home() {
               Upgrade to premium speakers that are phenomenally built to deliver
               truly remarkable sound.
             </span>
-            <Button type={"quaternaryLink"} text={"SEE PRODUCT"} />
+            <div className="z-20">
+              <Button
+                type={"quaternaryLink"}
+                text={"SEE PRODUCT"}
+                linkTo={"productDetails/6"}
+              />
+            </div>
           </div>
           <div className="relative h-80 rounded-lg flex flex-col justify-evenly py-16 pl-5">
             <picture>
@@ -98,8 +108,12 @@ function Home() {
               <h3 className="text-[28px] tracking-wide font-600 ">
                 ZX7 SPEAKER
               </h3>
-              <div className="">
-                <Button type={"tertiaryLink"} text={"SEE PRODUCT"} />
+              <div>
+                <Button
+                  type={"tertiaryLink"}
+                  text={"SEE PRODUCT"}
+                  linkTo={"productDetails/5"}
+                />
               </div>
             </div>
           </div>
@@ -129,7 +143,11 @@ function Home() {
                 YX1 EARPHONES
               </h3>
               <div>
-                <Button type={"tertiaryLink"} text={"SEE PRODUCT"} />
+                <Button
+                  type={"tertiaryLink"}
+                  text={"SEE PRODUCT"}
+                  linkTo={"productDetails/1"}
+                />
               </div>
             </div>
           </div>

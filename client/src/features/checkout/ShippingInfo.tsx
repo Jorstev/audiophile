@@ -26,7 +26,7 @@ function ShippingInfo() {
           placeholder="12345"
           regex={{
             value: "^[0-9]{5}$",
-            message: "Invalid ZIP code",
+            message: "Invalid ZIP code, Enter 5 digits",
           }}
         />
         <Input

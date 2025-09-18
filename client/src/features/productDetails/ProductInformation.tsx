@@ -9,6 +9,7 @@ import Counter from "../../ui/Counter";
 import { useDispatch, useSelector } from "react-redux";
 import { reset } from "./productSlice";
 import currencyFormat from "../../utils/currencyFormat";
+import toast, { Toaster } from "react-hot-toast";
 
 interface IncludeItem {
   quantity: number;
@@ -39,10 +40,12 @@ interface OthersItem {
     desktop?: string;
   };
   name: string;
+  slug: string;
 }
 
 interface Product {
   id: number;
+  slug: string;
   name: string;
   description: string;
   price: number;
@@ -83,13 +86,17 @@ const ProductInformation: React.FC = () => {
   const product = categoryProducts?.find(
     (product) => product.id === Number(id)
   );
-
+  const othersProducts = product?.others.map((other) =>
+    categoryProducts?.find((prod) => prod.slug === other.slug)
+  );
   const itemCount = useSelector((state: any) => state.product.counter);
   const OnAddToCart = () => {
     localStorage.setItem(
       `cart_${product?.id}`,
       JSON.stringify({ ...product, itemCount })
     );
+    toast.success("Successfully added to cart!");
+    window.dispatchEvent(new Event("cart-updated"));
     dispatch(reset());
   };
 
@@ -193,29 +200,29 @@ const ProductInformation: React.FC = () => {
           </h2>
           <div className="px-6 py-24 flex flex-col space-y-20 w-full md:flex-row md:space-x-4 items-center md:space-y-0 min-w-[360px] xl:px-0">
             {/* Example product card */}
-            {product?.others.map((other, index) => (
+            {othersProducts?.map((othersProduct, index) => (
               <div className="flex flex-col items-center space-y-5" key={index}>
                 <picture>
                   <source
                     media="(min-width: 1024px)"
-                    srcSet={other?.image?.desktop}
+                    srcSet={othersProduct?.image?.desktop}
                   />
                   <source
                     media="(min-width: 768px)"
-                    srcSet={other?.image?.tablet}
+                    srcSet={othersProduct?.image?.tablet}
                   />
                   <img
-                    src={other?.image?.mobile}
+                    src={othersProduct?.image?.mobile}
                     alt="other-product-image"
                     className="w-full h-auto object-cover mb-4"
                   />
                 </picture>
 
-                <h3 className="text-lg font-semibold">{other?.name}</h3>
+                <h3 className="text-lg font-semibold">{othersProduct?.name}</h3>
                 <Button
                   type="primaryBtn"
                   text="SEE PRODUCT"
-                  linkTo={`/productDetails/${product.id}`}
+                  linkTo={`/productDetails/${othersProduct?.id}`}
                 />
               </div>
             ))}

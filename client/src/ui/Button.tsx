@@ -8,6 +8,7 @@ interface ButtonProps {
   text: string;
   onClick?: () => void;
   disabled?: boolean;
+  customClass?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -16,13 +17,18 @@ const Button: React.FC<ButtonProps> = ({
   text,
   onClick,
   disabled = false,
+  customClass = "",
 }): JSX.Element | null => {
   const buttonType: Record<string, JSX.Element> = {
     primaryBtn: (
       <Link
         to={linkTo}
         onClick={disabled ? undefined : onClick}
-        className={`px-7 py-4 font-600 bg-[#D87D4A] text-xs tracking-widest text-white${
+        className={`${
+          customClass
+            ? customClass
+            : "px-7 py-4 font-600 bg-[#D87D4A] text-xs tracking-widest text-white"
+        }${
           disabled ? " opacity-50 pointer-events-none cursor-not-allowed" : ""
         }`}
       >
@@ -67,7 +73,7 @@ const Button: React.FC<ButtonProps> = ({
     quaternaryLink: (
       <Link
         to={linkTo}
-        className="px-7 py-4 font-600 bg-black text-xs tracking-widest"
+        className="px-7 py-4 font-600 bg-black text-xs tracking-widest hover:bg-[#4C4C4C]"
       >
         {text}
       </Link>

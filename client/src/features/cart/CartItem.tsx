@@ -5,7 +5,7 @@ import currencyFormat from "../../utils/currencyFormat";
 interface CartItemProps {
   counter?: boolean;
   productName: string;
-  price: string;
+  price: number | string;
   itemCount: number;
   image: string;
 }

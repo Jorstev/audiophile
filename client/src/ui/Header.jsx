@@ -7,42 +7,13 @@ import { AnimatePresence, motion } from "framer-motion";
 import CategorySection from "../features/category/CategorySection";
 import Button from "./Button";
 import currencyFormat from "../utils/currencyFormat.tsx";
+import { useCart } from "../context/CartContext.tsx";
 
 function Header() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [keysToRemove, setKeysToRemove] = useState([]);
 
-  const getCartItems = () => {
-    const items = [];
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-
-      const item = JSON.parse(localStorage.getItem(key));
-      if (item && item.name && item.price) {
-        items.push(item);
-      }
-    }
-    return items;
-  };
-
-  const cartItems = getCartItems();
-  const TotalCartAmount = cartItems.reduce(
-    (acc, item) => acc + item.price * item.itemCount,
-    0
-  );
-
-  useEffect(() => {
-    const handleStorageChange = () => {
-      const updatedCartItems = getCartItems();
-      console.log("Storage changed, updated cart items:", updatedCartItems);
-    };
-
-    window.addEventListener("storage", handleStorageChange);
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-    };
-  }, []);
+  const { cartItems, TotalCartAmount, handleDeleteItems } = useCart();
 
   const toggleCart = () => {
     setIsCartOpen((prev) => !prev);
@@ -74,12 +45,20 @@ function Header() {
           <Button type="LinkHeader" linkTo={"/earphones"} text="EARPHONES" />
         </div>
 
-        <div className=" flex md:basis-[70%] lg:basis-0 items-center justify-end">
+        <div className="flex md:basis-[70%] lg:basis-0 items-center justify-end relative">
           <AiOutlineShoppingCart
             className="text-2xl"
             color="#ffffff"
             onClick={toggleCart}
           />
+          {cartItems.length > 0 && (
+            <span
+              className="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center pointer-events-none"
+              style={{ transform: "translate(50%,-50%)" }}
+            >
+              {cartItems.length}
+            </span>
+          )}
         </div>
       </div>
       <AnimatePresence>
@@ -102,25 +81,12 @@ function Header() {
                   <h3 className="uppercase">cart ({cartItems.length})</h3>
                   <span
                     className="text-sm text-gray-500 cursor-pointer"
-                    onClick={() => {
-                      for (let i = localStorage.length - 1; i >= 0; i--) {
-                        const key = localStorage.key(i);
-                        if (key && key.startsWith("cart_")) {
-                          setKeysToRemove((prev) => [...prev, key]);
-                        }
-                      }
-
-                      keysToRemove.forEach((key) =>
-                        localStorage.removeItem(key)
-                      );
-                      window.dispatchEvent(new Event("storage"));
-                    }}
+                    onClick={handleDeleteItems}
                   >
                     Remove all
                   </span>
                 </div>
 
-                {/* Example cart content */}
                 {cartItems.length > 0 ? (
                   <div className="mt-4 flex flex-col space-y-4 overflow-y-auto h-56">
                     {cartItems.map((item) => (
@@ -153,9 +119,14 @@ function Header() {
                   </div>
                 </div>
                 <div>
-                  <button className="w-full bg-[#D87D4A] text-xs tracking-widest text-white py-4 mt-4 uppercase">
-                    Checkout
-                  </button>
+                  <Button
+                    type="primaryBtn"
+                    linkTo="/checkout"
+                    text="Checkout"
+                    onClick={toggleCart}
+                    customClass="w-full bg-[#D87D4A] text-xs tracking-widest text-white py-4 mt-4 uppercase block text-center hover:bg-[#FBAF85] transition-colors"
+                    disabled={cartItems.length === 0}
+                  />
                 </div>
               </div>
             </div>
