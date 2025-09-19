@@ -9,10 +9,9 @@ app.use(cors());
 app.use(morgan("tiny"));
 app.use("/api/products", router);
 
-// ✅ Serve React build in production
 if (process.env.NODE_ENV === "production") {
   const buildPath = path.join(__dirname, "client", "dist");
-  app.use(express.static(buildPath));
+  app.use(express.static("client/build"));
 
   app.get("/{*any}", (req, res) => {
     res.sendFile(path.join(buildPath, "index.html"));
