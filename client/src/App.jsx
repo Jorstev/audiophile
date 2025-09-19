@@ -19,9 +19,9 @@ function App() {
         <Routes>
           <Route path="/" element={<AppLayout />}>
             <Route index element={<Home />} />
-            <Route path="/:headphones" element={<CategoryMain />} />
-            <Route path="/:speakers" element={<CategoryMain />} />
-            <Route path="/:earphones" element={<CategoryMain />} />
+            <Route path="/headphones" element={<CategoryMain />} />
+            <Route path="/speakers" element={<CategoryMain />} />
+            <Route path="/earphones" element={<CategoryMain />} />
             <Route path="/productDetails/:id" element={<ProductDetails />} />
             <Route path="/checkout" element={<Checkout />} />
           </Route>
