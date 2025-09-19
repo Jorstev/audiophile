@@ -11,10 +11,10 @@ app.use("/api/products", router);
 
 // ✅ Serve React build in production
 if (process.env.NODE_ENV === "production") {
-  const buildPath = path.join(__dirname, "client", "build");
+  const buildPath = path.join(__dirname, "client", "dist");
   app.use(express.static(buildPath));
 
-  app.get("/*path", (req, res) => {
+  app.get("*", (req, res) => {
     res.sendFile(path.join(buildPath, "index.html"));
   });
 }
