@@ -1,5 +1,5 @@
 export async function getAllProducts() {
-  const response = await fetch(`http://localhost:3000/api/products`);
+  const response = await fetch(`/api/products`);
 
   if (!response.ok) {
     console.log("Network response was not ok");
