@@ -33,10 +33,7 @@ function Header() {
           color="#ffffff"
         />
         <Link to={"/"} className="">
-          <img
-            src="/src/assets/shared/mobile/audiophile 2.svg"
-            alt="audio-logo"
-          />
+          <img src="/assets/shared/mobile/audiophile 2.svg" alt="audio-logo" />
         </Link>
         <div className="hidden lg:flex lg:items-center lg:space-x-6">
           <Button type="LinkHeader" linkTo={"/"} text="HOME" />

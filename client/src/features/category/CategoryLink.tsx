@@ -24,7 +24,7 @@ const CategoryLink: React.FC<CategoryLinkProps> = ({
         className={`${
           menu ? "w-[60px]" : "w-[80px]"
         } z-20 absolute -top-12 left-1/2 -translate-x-1/2`}
-        src={`/src/assets/${image}`}
+        src={`/assets/${image}`}
         alt="image-category"
       />
       <div className="h-full flex flex-col justify-end items-center space-y-3 pb-5">

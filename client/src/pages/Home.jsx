@@ -92,15 +92,15 @@ function Home() {
             <picture>
               <source
                 media="(min-width: 1024px)"
-                srcSet="/src/assets/home/desktop/image-speaker-zx7.jpg"
+                srcSet="/assets/home/desktop/image-speaker-zx7.jpg"
               />
               <source
                 media="(min-width: 768px)"
-                srcSet="/src/assets/home/tablet/image-speaker-zx7.jpg"
+                srcSet="/assets/home/tablet/image-speaker-zx7.jpg"
               />
               <img
                 className="absolute w-full h-full object-cover top-0 left-0 rounded-lg z-0"
-                src="/src/assets/home/mobile/image-speaker-zx7.jpg"
+                src="/assets/home/mobile/image-speaker-zx7.jpg"
                 alt="image-speaker-zx7"
               />
             </picture>
@@ -122,15 +122,15 @@ function Home() {
               <picture>
                 <source
                   media="(min-width: 1024px)"
-                  srcSet="/src/assets/home/desktop/image-earphones-yx1.jpg"
+                  srcSet="/assets/home/desktop/image-earphones-yx1.jpg"
                 />
                 <source
                   media="(min-width: 768px)"
-                  srcSet="/src/assets/home/tablet/image-earphones-yx1.jpg"
+                  srcSet="/assets/home/tablet/image-earphones-yx1.jpg"
                 />
                 <img
                   className="rounded-lg w-full h-full object-cover"
-                  src="/src/assets/home/mobile/image-earphones-yx1.jpg"
+                  src="/assets/home/mobile/image-earphones-yx1.jpg"
                   alt="image-earphones"
                 />
               </picture>

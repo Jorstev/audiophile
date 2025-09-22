@@ -95,7 +95,7 @@ function PaymentDetails({
             >
               <img
                 className="block"
-                src="/src/assets/checkout/icon-cash-on-delivery.svg"
+                src="/assets/checkout/icon-cash-on-delivery.svg"
                 alt="cashDelivery"
               />
               <span className="text-gray-400 text-sm block">

@@ -28,7 +28,7 @@ function OrderConfirmationModal({
             <div className="bg-white w-full max-w-md p-6 shadow-lg outline-none rounded-lg flex flex-col justify-around h-[fit-content] space-y-6">
               <div className="flex flex-col justify-start items-start space-y-4">
                 <img
-                  src="/src/assets/checkout/icon-order-confirmation.svg"
+                  src="/assets/checkout/icon-order-confirmation.svg"
                   alt="confirmation"
                 />
                 <span className="uppercase font-600 text-2xl">
