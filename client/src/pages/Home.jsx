@@ -10,15 +10,15 @@ function Home() {
         <picture>
           <source
             media="(min-width: 1024px)"
-            srcSet="/src/assets/home/desktop/image-header.jpg"
+            srcSet="/assets/home/desktop/image-header.jpg"
           />
           <source
             media="(min-width: 768px)"
-            srcSet="/src/assets/home/tablet/image-header.jpg"
+            srcSet="/assets/home/tablet/image-header.jpg"
           />
           <img
             className="h-auto w-full object-fit object-bottom"
-            src="/src/assets/home/mobile/image-header.jpg"
+            src="/assets/home/mobile/image-header.jpg"
             alt="image-header"
           />
         </picture>
@@ -51,22 +51,22 @@ function Home() {
           <div className="relative bg-[#D87D4A]  h-[37.5rem] md:h-[45rem] rounded-lg flex flex-col justify-evenly items-center text-white text-center py-7 overflow-hidden">
             <img
               className=" absolute -top-0 left-0 w-full h-auto object-fit z-10"
-              src="\src\assets\home\desktop\pattern-circles.svg"
+              src="\assets\home\desktop\pattern-circles.svg"
               alt="pattern"
             />
             <div>
               <picture>
                 <source
                   media="(min-width: 1024px)"
-                  srcSet="/src/assets/home/desktop/image-speaker-zx9.png"
+                  srcSet="/assets/home/desktop/image-speaker-zx9.png"
                 />
                 <source
                   media="(min-width: 768px)"
-                  srcSet="/src/assets/home/tablet/image-speaker-zx9.png"
+                  srcSet="/assets/home/tablet/image-speaker-zx9.png"
                 />
                 <img
                   className="w-44"
-                  src="/src/assets/home/mobile/image-speaker-zx9.png"
+                  src="/assets/home/mobile/image-speaker-zx9.png"
                   alt="zx9-speaker-image"
                 />
               </picture>
