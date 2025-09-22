@@ -10,8 +10,10 @@ app.use(morgan("tiny"));
 app.use("/api/products", router);
 
 if (process.env.NODE_ENV === "production") {
-  const buildPath = path.join(__dirname, "client", "dist");
-  app.use(express.static("client/build"));
+  const buildPath = path.join(__dirname, "..", "client", "dist");
+
+  // Serve static files from client/dist
+  app.use(express.static(buildPath));
 
   app.get("/{*any}", (req, res) => {
     res.sendFile(path.join(buildPath, "index.html"));
